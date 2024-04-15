@@ -1,20 +1,22 @@
 // backend/server.js
-
 const express = require('express');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
 
 dotenv.config();
 
-const app = express();
-const PORT = process.env.PORT || 5000;
 
-// Middleware
+const app = express();
+const PORT = process.env.PORT || 5001;
+
+app.use(cors()); // Add this line to enable CORS for all routes
 app.use(express.json());
+// console.log("tet", process.env.MONGODB_URI);
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect('mongodb://localhost:27017/User', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
