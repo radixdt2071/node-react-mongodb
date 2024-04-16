@@ -13,12 +13,18 @@ const PORT = process.env.PORT || 5001;
 
 app.use(cors()); // Add this line to enable CORS for all routes
 app.use(express.json());
-// console.log("tet", process.env.MONGODB_URI);
+ //console.log("tet", process.env.MONGODB_URI);
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/User', {
+mongoose.connect('mongodb+srv://jahanvipatel:y6nDFA725QfAJ84K@cluster0.crosvd6.mongodb.net/?tls=true', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  serverApi: {
+    version: "1",
+    strict: true,
+    deprecationErrors: true,
+  },
+  connectTimeoutMS: 30000,
 })
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
